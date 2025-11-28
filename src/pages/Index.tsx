@@ -1,62 +1,76 @@
 import { ProductCard } from "@/components/ProductCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { FAQSection } from "@/components/FAQSection";
+import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Shield, Zap, Lock, CheckCircle2, Star, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
+import { useCart } from "@/contexts/CartContext";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Index = () => {
-  const handleBuy = (productName: string) => {
-    toast.success(`Redirecionando para compra de ${productName}...`, {
-      description: "Você será direcionado para o WhatsApp",
-    });
-    setTimeout(() => {
-      window.open("https://wa.me/5511999999999", "_blank");
-    }, 1000);
+  const { addItem } = useCart();
+
+  const handleAddToCart = (product: { id: string; title: string; price: string }) => {
+    addItem(product);
   };
 
   const handleConsult = (productName: string) => {
-    toast.info(`Consultando disponibilidade de ${productName}...`);
+    toast.info(`Consultando ${productName}...`, {
+      description: "Você será direcionado para o WhatsApp",
+    });
     setTimeout(() => {
-      window.open("https://wa.me/5511999999999", "_blank");
+      const phoneNumber = "5511999999999"; // IMPORTANTE: Substitua pelo número real
+      const message = encodeURIComponent(`Olá! Gostaria de consultar: ${productName}`);
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     }, 1000);
+  };
+
+  const handleWhatsApp = () => {
+    const phoneNumber = "5511999999999"; // IMPORTANTE: Substitua pelo número real
+    const message = encodeURIComponent("Olá! Vim do site e gostaria de fazer um pedido.");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   const accountProducts = [
     {
+      id: "pagina-antiga",
       title: "Página Antiga",
       description: "Página do Facebook com histórico autêntico",
       price: "30,00",
       badge: "Popular",
     },
     {
+      id: "instagram",
       title: "Instagram Antigos e Novos",
       description: "Contas Instagram verificadas conforme necessidade",
-      badge: "Sob consulta",
     },
     {
+      id: "tiktok",
       title: "TikTok",
       description: "Contas TikTok - conferir disponíveis",
-      badge: "Consultar",
     },
     {
+      id: "perfil-antigo",
       title: "Perfil Antigo Real",
       description: "Perfil real com histórico de anos",
       price: "150,00",
       badge: "Premium",
     },
     {
+      id: "proxy",
       title: "Proxy",
       description: "Proxy residencial de alta qualidade para múltiplas contas",
       price: "20,00",
     },
     {
+      id: "perfil-farmado",
       title: "Perfil Farmado (1 ano, vazio)",
       description: "Perfil aquecido por 1 ano, pronto para uso",
       price: "40,00",
     },
     {
+      id: "perfil-verificado",
       title: "Perfil Verificado com documento",
       description: "Perfil com verificação de identidade completa",
       price: "130,00",
@@ -66,52 +80,60 @@ const Index = () => {
 
   const bmProducts = [
     {
+      id: "bm-300",
       title: "BM 300 de Limite",
       description: "Business Manager com limite de R$ 300/dia",
       price: "30,00",
       badge: "Mais Vendido",
     },
     {
+      id: "bm-1300",
       title: "BM 1.3k",
       description: "Business Manager com limite de R$ 1.300/dia",
       price: "300,00",
       badge: "Top",
     },
     {
+      id: "bm-ilimitada",
       title: "BM Ilimitada",
       description: "Business Manager sem limite de gasto diário",
       price: "350,00",
       badge: "Premium",
     },
     {
+      id: "bm-gastos",
       title: "BMs com Gastos",
       description: "BMs com histórico de gastos - consultar disponibilidade",
-      badge: "Sob Consulta",
     },
   ];
 
   const gameProducts = [
     {
+      id: "free-fire",
       title: "Conta Free Fire",
       description: "Conta Free Fire com skins e diamantes",
       price: "80,00",
     },
     {
+      id: "fortnite",
       title: "Conta Fortnite",
       description: "Conta Fortnite com skins exclusivas",
       price: "120,00",
     },
     {
+      id: "gta-v",
       title: "GTA V Social Club",
       description: "Conta GTA V completa com alto nível",
       price: "150,00",
     },
     {
+      id: "cod-mobile",
       title: "Call of Duty Mobile",
       description: "Conta COD Mobile com armas raras",
       price: "90,00",
     },
     {
+      id: "steam",
       title: "Steam Nível Alto",
       description: "Conta Steam com nível elevado e jogos",
       price: "200,00",
@@ -121,9 +143,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Header com Carrinho */}
+      <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Shield className="w-8 h-8 text-primary" />
+            <span className="text-xl font-bold">Shield Contingência</span>
+          </div>
+          <CartDrawer />
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(${heroBg})`,
           backgroundSize: "cover",
@@ -155,7 +188,7 @@ const Index = () => {
             <Button
               size="lg"
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 py-6 shadow-lg hover:shadow-xl"
-              onClick={() => handleBuy("produto")}
+              onClick={handleWhatsApp}
             >
               <Zap className="w-5 h-5 mr-2" />
               Comprar Agora
@@ -164,7 +197,7 @@ const Index = () => {
               size="lg"
               variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-lg px-8 py-6"
-              onClick={() => window.open("https://wa.me/5511999999999", "_blank")}
+              onClick={handleWhatsApp}
             >
               Falar no WhatsApp
             </Button>
@@ -192,7 +225,6 @@ const Index = () => {
       {/* Products Sections */}
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Accounts & Profiles */}
           <div className="mb-20">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-4">
@@ -207,27 +239,27 @@ const Index = () => {
               </h2>
             </div>
 
-            <div className="flex flex-wrap gap-3 justify-center mb-8">
-              <Button variant="outline" className="border-primary text-primary">
-                🏠 Todas
-              </Button>
-              <Button variant="outline">👤 Contas & Perfis</Button>
-              <Button variant="outline">💼 Business Manager</Button>
-              <Button variant="outline">🎮 Jogos</Button>
-            </div>
-
             <h3 className="text-3xl font-bold mb-8 text-center">
               Contas & Perfis <span className="text-primary">Profissionais</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
-              {accountProducts.map((product, index) => (
+              {accountProducts.map((product) => (
                 <ProductCard
-                  key={index}
+                  key={product.id}
+                  id={product.id}
                   title={product.title}
                   description={product.description}
                   price={product.price}
                   badge={product.badge}
-                  onBuy={() => handleBuy(product.title)}
+                  onAddToCart={() =>
+                    product.price
+                      ? handleAddToCart({
+                          id: product.id,
+                          title: product.title,
+                          price: product.price,
+                        })
+                      : undefined
+                  }
                   onConsult={() => handleConsult(product.title)}
                 />
               ))}
@@ -237,14 +269,23 @@ const Index = () => {
               Business Manager <span className="text-primary">(BM)</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
-              {bmProducts.map((product, index) => (
+              {bmProducts.map((product) => (
                 <ProductCard
-                  key={index}
+                  key={product.id}
+                  id={product.id}
                   title={product.title}
                   description={product.description}
                   price={product.price}
                   badge={product.badge}
-                  onBuy={() => handleBuy(product.title)}
+                  onAddToCart={() =>
+                    product.price
+                      ? handleAddToCart({
+                          id: product.id,
+                          title: product.title,
+                          price: product.price,
+                        })
+                      : undefined
+                  }
                   onConsult={() => handleConsult(product.title)}
                 />
               ))}
@@ -254,14 +295,21 @@ const Index = () => {
               Contas de <span className="text-primary">Jogos</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {gameProducts.map((product, index) => (
+              {gameProducts.map((product) => (
                 <ProductCard
-                  key={index}
+                  key={product.id}
+                  id={product.id}
                   title={product.title}
                   description={product.description}
                   price={product.price}
                   badge={product.badge}
-                  onBuy={() => handleBuy(product.title)}
+                  onAddToCart={() =>
+                    handleAddToCart({
+                      id: product.id,
+                      title: product.title,
+                      price: product.price,
+                    })
+                  }
                   onConsult={() => handleConsult(product.title)}
                 />
               ))}
@@ -270,10 +318,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <FAQSection />
 
-      {/* Footer */}
       <footer className="bg-secondary/50 border-t border-border py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4">

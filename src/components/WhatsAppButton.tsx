@@ -3,7 +3,10 @@ import { Button } from "./ui/button";
 
 export const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
-    window.open("https://wa.me/5511999999999", "_blank");
+    // IMPORTANTE: Substitua pelo número real do WhatsApp
+    const phoneNumber = "5511999999999"; // Formato: código do país + DDD + número
+    const message = encodeURIComponent("Olá! Vim do site Shield Contingência e gostaria de mais informações.");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   return (

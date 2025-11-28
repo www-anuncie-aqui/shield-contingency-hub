@@ -1,27 +1,29 @@
-import { ShoppingCart, Shield } from "lucide-react";
+import { ShoppingCart, Shield, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 
 interface ProductCardProps {
+  id: string;
   title: string;
   description: string;
   price?: string;
   badge?: string;
   badgeVariant?: "default" | "secondary" | "destructive" | "outline";
   image?: string;
-  onBuy: () => void;
+  onAddToCart: () => void;
   onConsult?: () => void;
 }
 
 export const ProductCard = ({
+  id,
   title,
   description,
   price,
   badge,
   badgeVariant = "default",
   image,
-  onBuy,
+  onAddToCart,
   onConsult,
 }: ProductCardProps) => {
   return (
@@ -67,19 +69,20 @@ export const ProductCard = ({
         <div className="flex gap-2">
           {price ? (
             <Button
-              onClick={onBuy}
+              onClick={onAddToCart}
               className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold btn-glow"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
-              Comprar
+              Adicionar
             </Button>
           ) : (
             <Button
               onClick={onConsult}
               variant="outline"
-              className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold"
+              className="flex-1 border-success text-success hover:bg-success hover:text-success-foreground font-semibold"
             >
-              Consultar Estoque
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Consultar
             </Button>
           )}
         </div>
