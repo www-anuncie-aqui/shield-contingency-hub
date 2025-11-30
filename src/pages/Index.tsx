@@ -16,19 +16,29 @@ const Index = () => {
   };
 
   const handleConsult = (productName: string) => {
+    // ⚠️ ATENÇÃO: CONFIGURE SEU NÚMERO AQUI!
+    // Formato: código do país (55) + DDD + número (sem espaços, traços ou parênteses)
+    // Exemplo: "5511987654321" para (11) 98765-4321
+    const phoneNumber = "5511999999999"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
+    
     toast.info(`Consultando ${productName}...`, {
       description: "Você será direcionado para o WhatsApp",
     });
     setTimeout(() => {
-      const phoneNumber = "5511999999999"; // IMPORTANTE: Substitua pelo número real
       const message = encodeURIComponent(`Olá! Gostaria de consultar: ${productName}`);
+      console.log("📱 Abrindo WhatsApp:", `https://wa.me/${phoneNumber}`);
       window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     }, 1000);
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = "5511999999999"; // IMPORTANTE: Substitua pelo número real
+    // ⚠️ ATENÇÃO: CONFIGURE SEU NÚMERO AQUI!
+    // Formato: código do país (55) + DDD + número (sem espaços, traços ou parênteses)
+    // Exemplo: "5511987654321" para (11) 98765-4321
+    const phoneNumber = "5511999999999"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
+    
     const message = encodeURIComponent("Olá! Vim do site e gostaria de fazer um pedido.");
+    console.log("📱 Abrindo WhatsApp:", `https://wa.me/${phoneNumber}`);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 

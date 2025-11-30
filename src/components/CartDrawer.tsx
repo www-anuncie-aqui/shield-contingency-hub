@@ -11,12 +11,28 @@ import {
 import { useCart } from "@/contexts/CartContext";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
+import { toast } from "sonner";
 
 export const CartDrawer = () => {
   const { items, removeItem, updateQuantity, totalItems, totalPrice, clearCart } = useCart();
 
   const handleCheckout = () => {
     if (items.length === 0) {
+      return;
+    }
+
+    // ⚠️ ATENÇÃO: CONFIGURE SEU NÚMERO AQUI!
+    // Formato: código do país (55) + DDD + número (sem espaços, traços ou parênteses)
+    // Exemplo: "5511987654321" para (11) 98765-4321
+    const phoneNumber = "5511999999999"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
+    
+    // Verifica se o número ainda é o placeholder
+    if (phoneNumber === "5511999999999") {
+      toast.error("⚠️ Número do WhatsApp não configurado!", {
+        description: "Configure seu número real no arquivo src/components/CartDrawer.tsx na linha 39",
+        duration: 5000,
+      });
+      console.error("❌ ERRO: Configure o número do WhatsApp em src/components/CartDrawer.tsx");
       return;
     }
 
@@ -35,8 +51,7 @@ export const CartDrawer = () => {
       )}*\n\nGostaria de finalizar esta compra!`
     );
 
-    // IMPORTANTE: Substitua pelo número real do WhatsApp
-    const phoneNumber = "5511999999999"; // Substitua pelo seu número
+    console.log("📱 Abrindo WhatsApp:", `https://wa.me/${phoneNumber}`);
     window.open(`https://wa.me/${phoneNumber}?text=${whatsappMessage}`, "_blank");
     
     clearCart();
