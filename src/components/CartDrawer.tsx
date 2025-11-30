@@ -71,86 +71,82 @@ export const CartDrawer = () => {
           </SheetDescription>
         </SheetHeader>
 
-        <div className="flex flex-col h-full mt-6">
-          {items.length === 0 ? (
-            <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
-              <ShoppingCart className="h-16 w-16 text-muted-foreground/50 mb-4" />
-              <p className="text-lg text-muted-foreground mb-2">Carrinho vazio</p>
-              <p className="text-sm text-muted-foreground">
-                Adicione produtos para começar sua compra
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="flex-1 overflow-auto space-y-4 pr-2">
-                {items.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex gap-4 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors"
-                  >
-                    <div className="flex-1">
-                      <h4 className="font-semibold mb-1">{item.title}</h4>
-                      <p className="text-sm text-primary font-bold">
-                        R$ {parseFloat(item.price.replace(",", ".")).toFixed(2)}
-                      </p>
-                    </div>
+        {items.length === 0 ? (
+          <div className="flex-1 flex flex-col items-center justify-center text-center py-12 mt-6">
+            <ShoppingCart className="h-16 w-16 text-muted-foreground/50 mb-4" />
+            <p className="text-lg text-muted-foreground mb-2">Carrinho vazio</p>
+            <p className="text-sm text-muted-foreground">
+              Adicione produtos para começar sua compra
+            </p>
+          </div>
+        ) : (
+          <div className="flex flex-col h-[calc(100vh-8rem)] mt-6">
+            <div className="flex-1 overflow-auto space-y-4 pr-2 pb-4">
+              {items.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex gap-4 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors"
+                >
+                  <div className="flex-1">
+                    <h4 className="font-semibold mb-1">{item.title}</h4>
+                    <p className="text-sm text-primary font-bold">
+                      R$ {parseFloat(item.price.replace(",", ".")).toFixed(2)}
+                    </p>
+                  </div>
 
-                    <div className="flex flex-col items-end gap-2">
+                  <div className="flex flex-col items-end gap-2">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-6 w-6 text-destructive hover:text-destructive"
+                      onClick={() => removeItem(item.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+
+                    <div className="flex items-center gap-1 border border-border rounded-md">
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-6 w-6 text-destructive hover:text-destructive"
-                        onClick={() => removeItem(item.id)}
+                        className="h-7 w-7"
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Minus className="h-3 w-3" />
                       </Button>
-
-                      <div className="flex items-center gap-1 border border-border rounded-md">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-7 w-7"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        >
-                          <Minus className="h-3 w-3" />
-                        </Button>
-                        <span className="w-8 text-center text-sm font-semibold">
-                          {item.quantity}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-7 w-7"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        >
-                          <Plus className="h-3 w-3" />
-                        </Button>
-                      </div>
+                      <span className="w-8 text-center text-sm font-semibold">
+                        {item.quantity}
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-7 w-7"
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      >
+                        <Plus className="h-3 w-3" />
+                      </Button>
                     </div>
                   </div>
-                ))}
-              </div>
-
-              <div className="pt-4 space-y-4">
-                <Separator />
-                
-                <div className="flex justify-between items-center text-lg font-bold">
-                  <span>Total:</span>
-                  <span className="text-gradient text-2xl">
-                    R$ {totalPrice.toFixed(2)}
-                  </span>
                 </div>
+              ))}
+            </div>
 
-                <Button
-                  onClick={handleCheckout}
-                  className="w-full bg-success hover:bg-success/90 text-success-foreground font-bold text-lg py-6"
-                >
-                  Finalizar Compra no WhatsApp
-                </Button>
+            <div className="border-t border-border pt-4 pb-2 space-y-4 bg-background">
+              <div className="flex justify-between items-center text-lg font-bold">
+                <span>Total:</span>
+                <span className="text-gradient text-2xl">
+                  R$ {totalPrice.toFixed(2)}
+                </span>
               </div>
-            </>
-          )}
-        </div>
+
+              <Button
+                onClick={handleCheckout}
+                className="w-full bg-success hover:bg-success/90 text-success-foreground font-bold text-lg py-6 shadow-lg"
+              >
+                Finalizar Compra no WhatsApp
+              </Button>
+            </div>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );
