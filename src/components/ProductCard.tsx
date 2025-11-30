@@ -1,4 +1,4 @@
-import { ShoppingCart, Shield, MessageCircle } from "lucide-react";
+import { ShoppingCart, Shield, MessageCircle, LucideIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -11,6 +11,7 @@ interface ProductCardProps {
   badge?: string;
   badgeVariant?: "default" | "secondary" | "destructive" | "outline";
   image?: string;
+  icon?: LucideIcon;
   onAddToCart: () => void;
   onConsult?: () => void;
 }
@@ -23,9 +24,12 @@ export const ProductCard = ({
   badge,
   badgeVariant = "default",
   image,
+  icon,
   onAddToCart,
   onConsult,
 }: ProductCardProps) => {
+  const IconComponent = icon || Shield;
+  
   return (
     <Card className="group relative overflow-hidden border-border bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,86,255,0.3)]">
       {badge && (
@@ -45,8 +49,8 @@ export const ProductCard = ({
             className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
           />
         ) : (
-          <div className="flex items-center justify-center h-full">
-            <Shield className="w-16 h-16 text-primary/30" />
+          <div className="flex items-center justify-center h-full bg-gradient-to-br from-primary/10 to-accent/10">
+            <IconComponent className="w-20 h-20 text-primary group-hover:scale-110 transition-transform duration-300" />
           </div>
         )}
       </div>

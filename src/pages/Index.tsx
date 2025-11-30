@@ -3,7 +3,30 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { FAQSection } from "@/components/FAQSection";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
-import { Shield, Zap, Lock, CheckCircle2, Star, TrendingUp } from "lucide-react";
+import { 
+  Shield, 
+  Zap, 
+  Lock, 
+  CheckCircle2, 
+  Star, 
+  TrendingUp,
+  FileCheck,
+  Camera,
+  Music,
+  UserCheck,
+  Server,
+  Clock,
+  BadgeCheck,
+  DollarSign,
+  TrendingUp as ChartUp,
+  Infinity,
+  PieChart,
+  Flame,
+  Crosshair,
+  Car,
+  Target,
+  Cloud
+} from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/contexts/CartContext";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -49,16 +72,19 @@ const Index = () => {
       description: "Página do Facebook com histórico autêntico",
       price: "30,00",
       badge: "Popular",
+      icon: FileCheck,
     },
     {
       id: "instagram",
       title: "Instagram Antigos e Novos",
       description: "Contas Instagram verificadas conforme necessidade",
+      icon: Camera,
     },
     {
       id: "tiktok",
       title: "TikTok",
       description: "Contas TikTok - conferir disponíveis",
+      icon: Music,
     },
     {
       id: "perfil-antigo",
@@ -66,18 +92,21 @@ const Index = () => {
       description: "Perfil real com histórico de anos",
       price: "150,00",
       badge: "Premium",
+      icon: UserCheck,
     },
     {
       id: "proxy",
       title: "Proxy",
       description: "Proxy residencial de alta qualidade para múltiplas contas",
       price: "20,00",
+      icon: Server,
     },
     {
       id: "perfil-farmado",
       title: "Perfil Farmado (1 ano, vazio)",
       description: "Perfil aquecido por 1 ano, pronto para uso",
       price: "40,00",
+      icon: Clock,
     },
     {
       id: "perfil-verificado",
@@ -85,6 +114,7 @@ const Index = () => {
       description: "Perfil com verificação de identidade completa",
       price: "130,00",
       badge: "Verificado",
+      icon: BadgeCheck,
     },
   ];
 
@@ -95,6 +125,7 @@ const Index = () => {
       description: "Business Manager com limite de R$ 300/dia",
       price: "30,00",
       badge: "Mais Vendido",
+      icon: DollarSign,
     },
     {
       id: "bm-1300",
@@ -102,6 +133,7 @@ const Index = () => {
       description: "Business Manager com limite de R$ 1.300/dia",
       price: "300,00",
       badge: "Top",
+      icon: ChartUp,
     },
     {
       id: "bm-ilimitada",
@@ -109,11 +141,13 @@ const Index = () => {
       description: "Business Manager sem limite de gasto diário",
       price: "350,00",
       badge: "Premium",
+      icon: Infinity,
     },
     {
       id: "bm-gastos",
       title: "BMs com Gastos",
       description: "BMs com histórico de gastos - consultar disponibilidade",
+      icon: PieChart,
     },
   ];
 
@@ -123,24 +157,28 @@ const Index = () => {
       title: "Conta Free Fire",
       description: "Conta Free Fire com skins e diamantes",
       price: "80,00",
+      icon: Flame,
     },
     {
       id: "fortnite",
       title: "Conta Fortnite",
       description: "Conta Fortnite com skins exclusivas",
       price: "120,00",
+      icon: Crosshair,
     },
     {
       id: "gta-v",
       title: "GTA V Social Club",
       description: "Conta GTA V completa com alto nível",
       price: "150,00",
+      icon: Car,
     },
     {
       id: "cod-mobile",
       title: "Call of Duty Mobile",
       description: "Conta COD Mobile com armas raras",
       price: "90,00",
+      icon: Target,
     },
     {
       id: "steam",
@@ -148,6 +186,7 @@ const Index = () => {
       description: "Conta Steam com nível elevado e jogos",
       price: "200,00",
       badge: "Premium",
+      icon: Cloud,
     },
   ];
 
@@ -261,6 +300,7 @@ const Index = () => {
                   description={product.description}
                   price={product.price}
                   badge={product.badge}
+                  icon={product.icon}
                   onAddToCart={() =>
                     product.price
                       ? handleAddToCart({
@@ -287,6 +327,7 @@ const Index = () => {
                   description={product.description}
                   price={product.price}
                   badge={product.badge}
+                  icon={product.icon}
                   onAddToCart={() =>
                     product.price
                       ? handleAddToCart({
@@ -313,6 +354,7 @@ const Index = () => {
                   description={product.description}
                   price={product.price}
                   badge={product.badge}
+                  icon={product.icon}
                   onAddToCart={() =>
                     handleAddToCart({
                       id: product.id,
