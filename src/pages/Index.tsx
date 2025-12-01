@@ -25,7 +25,12 @@ import {
   Crosshair,
   Car,
   Target,
-  Cloud
+  Cloud,
+  MessageSquare,
+  Twitter,
+  Mail,
+  Facebook,
+  Send
 } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/contexts/CartContext";
@@ -115,6 +120,43 @@ const Index = () => {
       price: "130,00",
       badge: "Verificado",
       icon: BadgeCheck,
+    },
+    {
+      id: "discord-2021-2022",
+      title: "Contas Discord 2021/2022",
+      description: "Contas Discord de alta qualidade com email incluso",
+      price: "29,99",
+      icon: MessageSquare,
+    },
+    {
+      id: "twitter-x-2025",
+      title: "Contas Twitter/X Novas 2025",
+      description: "Contas Twitter/X de alta qualidade com email e 2FA",
+      price: "35,00",
+      badge: "Novo",
+      icon: Twitter,
+    },
+    {
+      id: "gmail-verificada",
+      title: "Conta Gmail Verificada",
+      description: "Conta Gmail verificada com acesso imediato",
+      price: "10,00",
+      icon: Mail,
+    },
+    {
+      id: "facebook-bm-pagina",
+      title: "Facebook + BM + Página Criada",
+      description: "Pacote completo pronto para anunciar",
+      price: "49,99",
+      badge: "Completo",
+      icon: Facebook,
+    },
+    {
+      id: "telegram-tdata",
+      title: "Contas Telegram TDATA Prontas",
+      description: "Contas Telegram de alta qualidade prontas para uso",
+      price: "19,99",
+      icon: Send,
     },
   ];
 
