@@ -1,7 +1,7 @@
 import { ProductCard } from "@/components/ProductCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { FAQSection } from "@/components/FAQSection";
-import { CartDrawer } from "@/components/CartDrawer";
+import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { 
   Shield, 
@@ -192,16 +192,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header com Carrinho */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Shield className="w-8 h-8 text-primary" />
-            <span className="text-xl font-bold">Shield Contingência</span>
-          </div>
-          <CartDrawer />
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
       <section
@@ -272,7 +263,7 @@ const Index = () => {
       </section>
 
       {/* Products Sections */}
-      <section className="py-20 px-4">
+      <section id="produtos" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20">
             <div className="text-center mb-12">

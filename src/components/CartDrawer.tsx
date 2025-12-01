@@ -1,4 +1,4 @@
-import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
+import { ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Sheet,
@@ -6,14 +6,18 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "./ui/sheet";
 import { useCart } from "@/contexts/CartContext";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
 import { toast } from "sonner";
 
-export const CartDrawer = () => {
+interface CartDrawerProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
   const { items, removeItem, updateQuantity, totalItems, totalPrice, clearCart } = useCart();
 
   const handleCheckout = () => {
@@ -58,21 +62,7 @@ export const CartDrawer = () => {
   };
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="relative border-primary/50 hover:border-primary hover:bg-primary/10"
-        >
-          <ShoppingCart className="h-5 w-5 text-primary" />
-          {totalItems > 0 && (
-            <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-accent text-accent-foreground font-bold text-xs">
-              {totalItems}
-            </Badge>
-          )}
-        </Button>
-      </SheetTrigger>
+    <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:max-w-lg">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
