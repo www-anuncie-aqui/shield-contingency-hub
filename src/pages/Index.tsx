@@ -3,7 +3,8 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { FAQSection } from "@/components/FAQSection";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { 
+import { useState } from "react";
+import {
   Shield, 
   Zap, 
   Lock, 
@@ -38,6 +39,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 const Index = () => {
   const { addItem } = useCart();
+  const [activeCategory, setActiveCategory] = useState<string>("todos");
 
   const handleAddToCart = (product: { id: string; title: string; price: string }) => {
     addItem(product);
@@ -321,11 +323,49 @@ const Index = () => {
               </h2>
             </div>
 
-            <h3 className="text-3xl font-bold mb-8 text-center">
-              Contas & Perfis <span className="text-primary">Profissionais</span>
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
-              {accountProducts.map((product) => (
+            {/* Category Filter Menu */}
+            <div className="flex flex-wrap justify-center gap-3 mb-12 sticky top-16 z-40 py-4 bg-background/95 backdrop-blur-md">
+              <Button
+                variant={activeCategory === "todos" ? "default" : "outline"}
+                onClick={() => setActiveCategory("todos")}
+                className="flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all"
+              >
+                <Shield className="w-4 h-4" />
+                Todos
+              </Button>
+              <Button
+                variant={activeCategory === "contas" ? "default" : "outline"}
+                onClick={() => setActiveCategory("contas")}
+                className="flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all"
+              >
+                <BadgeCheck className="w-4 h-4" />
+                Contas & Perfis
+              </Button>
+              <Button
+                variant={activeCategory === "bm" ? "default" : "outline"}
+                onClick={() => setActiveCategory("bm")}
+                className="flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all"
+              >
+                <DollarSign className="w-4 h-4" />
+                Business Manager
+              </Button>
+              <Button
+                variant={activeCategory === "jogos" ? "default" : "outline"}
+                onClick={() => setActiveCategory("jogos")}
+                className="flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all"
+              >
+                <Target className="w-4 h-4" />
+                Jogos
+              </Button>
+            </div>
+
+            {(activeCategory === "todos" || activeCategory === "contas") && (
+              <>
+                <h3 className="text-3xl font-bold mb-8 text-center">
+                  Contas & Perfis <span className="text-primary">Profissionais</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+                  {accountProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   id={product.id}
@@ -346,13 +386,17 @@ const Index = () => {
                   onConsult={() => handleConsult(product.title)}
                 />
               ))}
-            </div>
+                </div>
+              </>
+            )}
 
-            <h3 className="text-3xl font-bold mb-8 text-center">
-              Business Manager <span className="text-primary">(BM)</span>
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
-              {bmProducts.map((product) => (
+            {(activeCategory === "todos" || activeCategory === "bm") && (
+              <>
+                <h3 className="text-3xl font-bold mb-8 text-center">
+                  Business Manager <span className="text-primary">(BM)</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+                  {bmProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   id={product.id}
@@ -373,13 +417,17 @@ const Index = () => {
                   onConsult={() => handleConsult(product.title)}
                 />
               ))}
-            </div>
+                </div>
+              </>
+            )}
 
-            <h3 className="text-3xl font-bold mb-8 text-center">
-              Contas de <span className="text-primary">Jogos</span>
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {gameProducts.map((product) => (
+            {(activeCategory === "todos" || activeCategory === "jogos") && (
+              <>
+                <h3 className="text-3xl font-bold mb-8 text-center">
+                  Contas de <span className="text-primary">Jogos</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {gameProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   id={product.id}
@@ -398,7 +446,9 @@ const Index = () => {
                   onConsult={() => handleConsult(product.title)}
                 />
               ))}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>

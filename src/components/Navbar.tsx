@@ -9,8 +9,13 @@ export const Navbar = () => {
   const { totalItems } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const handleScrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const navLinks = [
-    { to: "/", label: "Início" },
+    { to: "/", label: "Início", onClick: handleScrollToTop },
     { to: "/#produtos", label: "Produtos" },
     { to: "/faq", label: "FAQ" },
     { to: "/suporte", label: "Suporte" },
@@ -33,6 +38,7 @@ export const Navbar = () => {
                 <NavLink
                   key={link.to}
                   to={link.to}
+                  onClick={link.onClick}
                   className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
                   activeClassName="text-foreground font-semibold"
                 >
@@ -62,6 +68,7 @@ export const Navbar = () => {
               <NavLink
                 key={link.to}
                 to={link.to}
+                onClick={link.onClick}
                 className="text-xs font-medium text-foreground/70 hover:text-foreground transition-colors"
                 activeClassName="text-primary font-bold"
               >
