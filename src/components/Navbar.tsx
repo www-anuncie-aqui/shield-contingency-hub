@@ -15,7 +15,7 @@ export const Navbar = () => {
   };
 
   const navLinks = [
-    { to: "/", label: "Início", onClick: handleScrollToTop },
+    { to: "/", label: "Início"  },
     { to: "/#produtos", label: "Produtos" },
     { to: "/faq", label: "FAQ" },
     { to: "/suporte", label: "Suporte" },
