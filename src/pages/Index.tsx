@@ -365,6 +365,9 @@ const Index = () => {
               </Button>
             </div>
 
+            <div id="produtos">
+
+            
             {(activeCategory === "todos" || activeCategory === "contas") && (
               <>
                 <h3 className="text-3xl font-bold mb-8 text-center">
@@ -395,7 +398,7 @@ const Index = () => {
                 </div>
               </>
             )}
-
+</div>
             {(activeCategory === "todos" || activeCategory === "bm") && (
               <>
                 <h3 className="text-3xl font-bold mb-8 text-center">
