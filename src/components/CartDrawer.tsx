@@ -31,7 +31,7 @@ export const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
     const phoneNumber = "5511933471413"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
     
     // Verifica se o número ainda é o placeholder
-    if (phoneNumber === "5511933471413") {
+    if (phoneNumber === "933471413") {
       toast.error("⚠️ Número do WhatsApp não configurado!", {
         description: "Configure seu número real no arquivo src/components/CartDrawer.tsx na linha 39",
         duration: 5000,
