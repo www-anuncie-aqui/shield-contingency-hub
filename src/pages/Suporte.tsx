@@ -8,7 +8,7 @@ import { toast } from "sonner";
 const Suporte = () => {
   const handleWhatsAppSupport = () => {
     // ⚠️ ATENÇÃO: CONFIGURE SEU NÚMERO AQUI!
-    const phoneNumber = "5511999999999";
+    const phoneNumber = "5511933471413";
     const message = encodeURIComponent("Olá! Preciso de suporte.");
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
