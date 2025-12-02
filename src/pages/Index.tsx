@@ -49,7 +49,7 @@ const Index = () => {
     // ⚠️ ATENÇÃO: CONFIGURE SEU NÚMERO AQUI!
     // Formato: código do país (55) + DDD + número (sem espaços, traços ou parênteses)
     // Exemplo: "5511987654321" para (11) 98765-4321
-    const phoneNumber = "5511999999999"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
+    const phoneNumber = "5511933471413"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
     
     toast.info(`Consultando ${productName}...`, {
       description: "Você será direcionado para o WhatsApp",
@@ -65,7 +65,7 @@ const Index = () => {
     // ⚠️ ATENÇÃO: CONFIGURE SEU NÚMERO AQUI!
     // Formato: código do país (55) + DDD + número (sem espaços, traços ou parênteses)
     // Exemplo: "5511987654321" para (11) 98765-4321
-    const phoneNumber = "5511999999999"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
+    const phoneNumber = "5511933471413"; // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL!
     
     const message = encodeURIComponent("Olá! Vim do site e gostaria de fazer um pedido.");
     console.log("📱 Abrindo WhatsApp:", `https://wa.me/${phoneNumber}`);
