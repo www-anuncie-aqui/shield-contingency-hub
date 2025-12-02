@@ -72,6 +72,34 @@ const Index = () => {
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
+  <section id="produtos" className="scroll-mt-24 pt-20">
+  <h2 className="text-3xl font-bold text-center mb-10">Produtos</h2>
+
+  {/* Produtos de Contas */}
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {accountProducts.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ))}
+  </div>
+
+  {/* Produtos BM */}
+  <h2 className="text-3xl font-bold text-center mt-20 mb-10">Business Managers</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {bmProducts.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ))}
+  </div>
+
+  {/* Produtos Games */}
+  <h2 className="text-3xl font-bold text-center mt-20 mb-10">Games</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {gameProducts.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ))}
+  </div>
+</section>
+
+  
   const accountProducts = [
     {
       id: "pagina-antiga",
